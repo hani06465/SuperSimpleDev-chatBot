@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React Basics - SuperSimpleDev ChatBot Start</title>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
 
-  <!-- Load React, ReactDOM, and Babel (for JSX) from CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
-  <!-- Where React will render our app -->
-  <div id="root"></div>
-
-  <script type="text/babel">
-    // Your first React code (Lesson 1 basics)
-    function App() {
-      return (
-        <div>
-          <h1>Hello from React!</h1>
-          <p>Starting my SuperSimpleDev React course - ChatBot project</p>
-          {/* This is JSX - you'll learn this in Lesson 1 */}
-        </div>
-      );
-    }
-
-    // Render the App component into the #root div
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
-
-</body>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render('Welcome to SuperSimpleDev React Course');
+    </script>
+  </body>
 </html>
