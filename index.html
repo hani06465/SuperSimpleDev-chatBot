@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>React Basics</title>
+    <title>Chatbot</title>
   </head>
   <body>
     <div class="js-container"></div>
@@ -11,8 +11,22 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      function ChatInput(){
+        return (
+          <div>
+            <input placeholder="Send a message to Chatbot" />
+            <button>Send</button>
+          </div>
+        );}
+
+        const div =(
+          <div>
+            <ChatInput />
+          </div>
+        );
+
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render('Welcome to SuperSimpleDev React Course');
+      ReactDOM.createRoot(container).render(div);
     </script>
   </body>
 </html>
