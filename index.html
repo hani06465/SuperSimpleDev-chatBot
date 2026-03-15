@@ -12,13 +12,26 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput(){
+
+        const [inputText,setInputText] = React.useState('');
+
+        function saveInputText(event){
+          setInputText(event.target.value);
+        }
+        function sendMessage(){
+            console.log(inputText);
+        }
         return (
           <>
             <input 
             placeholder="Send a message to Chatbot" 
             size="30"
+            onChange={saveInputText}
           />
-            <button>Send</button>
+            <button
+              onClick={sendMessage}
+
+            >Send</button>
           </>
         );
       }
@@ -41,29 +54,73 @@
         );
       }
 
+      function ChatMessages() {
+        const [chatMessages,setChatMessages] = React.useState(
+          [{
+          message : "hello chatbot", 
+          sender:"user",
+          id:'id1',
+        },{
+          message : "Hello! How can i help you?", 
+          sender:"robot",
+           id:'id2',
+        },{
+          message :"can you get me today's date",
+          sender:"user",
+           id:'id3',
+        },{
+            message: "Today is semptember 27" ,
+            sender:"robot",
+             id:'id4',
+        }]);
+        
+        //const chatMessages = array[0]; // gives all the data in the state
+        //const setChatMessages = array[1]; // this gives us a functin that will update the data in the array[0]
+        function sendmessage(){
+          setChatMessages([
+            ...chatMessages,
+            {
+              message:'test',
+              sender: 'user',
+              id: crypto.randomUUID(),
+            }
+          ]);// this updates the data in way it all replaces with the new data so if we want the old data we have to make a copy of it.
+
+         
+        }
+       
+        return (
+          <>
+     
+            <button onClick={sendmessage}>Send message </button>
+            {chatMessages.map((chatMessage) => {
+                      return (
+                      
+                        <ChatMessage 
+                            message = {chatMessage.message} // if we use double quote here it saves it as string not the value of it.
+                            sender = {chatMessage.sender}
+                            key = {chatMessage.id}
+                        />
+                        );
+                    })}
+          </>
+        );
+              
+
+      }
+
       function App(){
+       
+
+        
         return(
           <>
             <ChatInput />
-            <ChatMessage
-              message = "hello chatbot" 
-              sender="user"
-            />
-            <ChatMessage 
-              message = "Hello! How can i help you?" 
-              sender="robot"
-            />
-            <ChatMessage 
-              message = "can you get me today's date" 
-              sender="user"
-            />
-            <ChatMessage 
-              message = "Today is semptember 27" 
-              sender="robot"
-            />    
+            <ChatMessages />
+            
           </>
         );
-      };
+      }
        
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
